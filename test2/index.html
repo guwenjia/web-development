@@ -1,0 +1,144 @@
+<!DOCTYPE>
+<html>
+	
+	<meta charset="UTF-8"/>
+	<meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+	<head>
+		<title>影评首页</title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+				
+			}
+			.clearfix:before, .clearfix:after { 
+			  display: block; 
+			  height: 0; 
+			  content: ""; 
+			  visibility: hidden;
+			  clear: both; 
+			} 
+			header{
+				height: 7.66rem;
+				width: 7.50rem;
+				background-image: url(images/pic.jpg);
+				border: 0px;
+				opacity:0.8;
+			}
+			/*.header0{
+				background-color: #000000;
+				opacity:0.2;
+				height: 7.66rem;
+				width: 7.50rem;
+			}*/
+			header p{
+				padding-top: 0.3rem;
+				font-size: 0.4rem;
+				color: white;
+				text-align: center;
+				opacity:1;
+				
+				
+			}
+			header img{
+				height: 0.5rem;
+				width: 0.5rem;
+				float: right;
+				position: relative;
+				top: -0.5rem;
+				left: -0.24rem;
+			}
+			.headermain{
+				height: 1.33rem;
+				position: relative;
+				top: 5.5rem;
+				
+			}
+			.headermain img{
+				padding-right:0.24rem ;
+				position: relative;
+				top: 0.1rem;
+				left:-5.5rem ;
+				width: 1rem;
+				height: 1rem;
+			}
+			.headermain p{
+				font-size: 0.22rem;
+
+				padding:0.2rem 0 0 1.5rem;
+				text-align: left;
+				font-family: "微软雅黑";
+			}
+			.headermain p strong{
+				font-size: 0.3rem;
+				font-weight: bold;
+				
+			}
+			.main{
+				height: 6.0rem;
+				background-color: #151a24;
+				
+			}
+			.main1{
+				float: left;
+				padding: 0.9rem 0.2rem 0 0.25rem;
+			}
+			.footer{
+				width: 100%;
+				height:1rem ;
+				background-color: #151a24;
+				position:fixed;
+				bottom:0;
+			}
+			.footer0 li{
+				float: left;
+				padding: 0.15rem 0.51rem 0rem 0.51rem;
+			}
+			.footer1 li{
+				float: left;
+				padding: 0rem 0.55rem 0rem 0.53rem;
+				font-size: 0.2rem;
+				color: white;
+			}
+		</style>
+		<script src="rem.js"></script>
+	</head>
+	<body>
+		<header>
+			<div class="header0">
+				<p>M-TIME</p>
+				<img src="images/sousuo.png"/>
+				<div class="headermain">
+					<img src="images/piccenter.png" />
+					<p><strong>超人归来</strong><br/>
+						超级英雄电影《超人归来》（SUPERMAN RETURNS）
+					</p>
+				</div>
+			</div>
+		</header>
+		<div class="main">
+			<div class="main1">
+				<img src="images/pic1.png" />
+			</div>
+			<div class="main1">
+				<img src="images/pic2.jpg" />
+			</div>
+		</div>
+		<div class="footer">
+			<ul class="footer0">
+				<li><img src="images/shouye.png"></li>
+				<li><img src="images/redian.png"></li>
+				<li><img src="images/yuanxian.png"></li>
+				<li><img src="images/retu.png"></li>
+				<li><img src="images/wode.png"></li>
+			</ul>
+			<ul class="footer1">
+				<li>首页</li>
+				<li>热点</li>
+				<li>院线</li>
+				<li>热图</li>
+				<li>我的</li>
+			</ul>
+		</div>
+	</body>
+</html>
