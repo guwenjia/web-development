@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>QQ聊天界面</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+	    <script src="js/jquery-2.2.2.js"></script>
+	    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+	    <style>
+	    	#header{
+	    		background-color: #3ea4fe;
+	    		color:white;
+	    		height: 50px;
+	    		line-height: 25px;
+	    	}
+	    	#header img{
+	    		float:left;
+	    		width:40px;
+	    		height:40px;
+	    		border-radius:100px;
+	    		margin:5px 0 0 8px;
+	    	}
+			#content{
+				width:100%;
+				
+			}
+	    	#content li img{
+	    		border-radius:100px;
+	    		height:4rem;
+	    		width:4rem;
+				margin: 8px 0 0 8px;
+	    	}
+			#footer{
+				height:40px;
+				width:100%;
+				position:fixed; 
+				bottom:0; 
+			}
+	   		#footer a{
+				margin:0;
+	   		}
+
+	    </style>
+	</head>
+	<body>
+		<div id="header" data-role="header">
+			<div><img src="images/4.jpeg"></div>
+			<!--<a href="#" data-role="button" data-iconpos="notext" ></a>-->
+			<h3>消息</h3>
+			<div style="float:right; position: relative; top:-45px; left:-20px"><a href="#" data-role="button" data-icon="plus" data-iconpos="notext" ></a></div>
+		</div>
+		
+		<div id="content" data-role="content">
+
+
+			<ul data-role="listview">
+			    <li data-icon="false">
+			        <a href="#">
+			            <img src="images/1.jpg">
+			            <h2>15级H5前端</h2>
+			            <p>[文件]第八章.zip</p>
+			        </a>
+			  </li>
+			  <li data-icon="false">
+			        <a href="#">
+			            <img src="images/5.jpg">
+			            <h2>软件7班</h2>
+			            <p>软件过程作业，记得完成</p>
+			        </a>
+			  </li>
+			  <li data-icon="false">
+			        <a href="#">
+			            <img src="images/02.jpg">
+			            <h2>消消乐</h2>
+			            <p>[图片]</p>
+			        </a>
+			  </li>
+			  <li data-icon="false">
+			        <a href="#">
+			            <img src="images/6.jpg">
+			            <h2>RoyWang</h2>
+			            <p>[文件]</p>
+			        </a>
+			  </li>
+			  <li data-icon="false">
+			        <a href="#">
+			            <img src="images/10.jpg">
+			            <h2>清新</h2>
+			            <p>[文件]</p>
+			        </a>
+			  </li>
+			  <li data-icon="false">
+			        <a href="#">
+			            <img src="images/0.jpg">
+			            <h2>娜娜</h2>
+			            <p>[文件]</p>
+			        </a>
+			  </li>
+			</ul>
+		</div>
+		<div id="footer" data-role="footer">
+			<div data-role="navbar">
+	      		<ul>
+			        <li><a href="#" data-icon="info" ></a></li>
+			        <li><a href="#" data-icon="grid" ></a></li>
+			        <li><a href="#" data-icon="star"></a></li>
+		      	</ul>
+	    	</div>
+		</div>
+		
+		
+		
+	</body>
+</html>
