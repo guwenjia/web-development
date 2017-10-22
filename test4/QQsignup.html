@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+	    <script src="js/jquery-2.2.2.js"></script>
+	    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+	    <style>
+	    	#header{
+	    		background-color: #3ea4fe;
+	    		height: 50px;
+	    		line-height: 25px;
+	    		color:white;
+	    	}
+	    	
+	    	#pic{
+				text-align: center;
+				margin-top: 50px;
+					    		
+	    	}
+			#pic img{
+				
+				border-radius:100%;
+				width: 30%;
+				height: 30%;
+			}
+			#content{
+				margin:0 20px;
+				
+			}
+			form{
+				text-align: center;
+			}
+			form a{
+				width: 36%;
+			}
+
+	   </style>
+	</head>
+	<script>
+
+			$('#btn').click(function(){
+				var username=$('#user').val();  //输入框id
+				var password=$('#password1').val(); //密码框id
+				$.ajax({
+					type:'post',
+					url:'http://datainfo.duapp.com/shopdata/userinfo.php',
+					data:{status:'register',userID:username,password:password},
+					
+					success:function(data){
+						if(data == 0){
+							alert('用户名重名');
+						}
+						else if(data == 2){
+							alert('数据库报错');
+						}
+						else{
+							window.location.href='QQsignin.html';
+						}		
+					}
+				})
+			})	
+		
+		
+		var password1 = document.getElementById("password1");
+		var password2 = document.getElementById("password2");
+		var user = document.getElementById("user");
+		function signIn(){
+			
+			with(document.all){ 
+				if(password1.value!=password2.value) 
+				{ 
+					alert("密码不一致") 
+					password1.value = ""; 
+					password2.value = ""; 
+					
+				} 
+				else if(user.value.length<3){
+		     		alert("用户名必须在3位以上");
+		     		user.value = ""; 
+					
+		           
+		     	}
+				else if (user.value==""){
+			        alert("用户名不能为空！");
+			        
+			    }
+				else if (password1.value==""){
+			        alert("密码不能为空！");
+
+			    }
+
+				else {
+					alert("您的登录账号为:"+ user.value +"密码为：" + password1.value);
+//					document.forms[0].submit(); 
+//					window.location.href="QQsignin.html";
+
+				}
+				
+
+				
+			}
+		}
+
+	</script>
+	
+	<body>
+		<div id="header" data-role="header">
+			<h3>注册</h3>
+		</div>
+		
+		<div id="content">
+			<div id="pic">
+				<img src="images/QQ.jpg" />
+			</div>
+				
+			<div>
+				<form>
+	    			<input type="text" name="user" id="user" value="" placeholder="请输入您的手机号/邮箱" />
+	    			<input type="password" name="password1" id="password1" value="" placeholder="请设置密码" />
+					<input type="password" name="password2" id="password2" value="" placeholder="请再次输入密码" />
+					
+					<a href="QQsignin.html" data-role="button" data-inline="ture" >
+					登录已有账号 
+					</a>
+					<a href="" data-role="button" data-inline="ture" onclick="signIn()">
+					注册
+					</a>
+					
+				</form>
+			</div>	
+			
+			
+			
+		</div>
+		
+		
+	</body>
+</html>
