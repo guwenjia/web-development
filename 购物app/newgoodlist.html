@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta charset="UTF-8">
+		<title>主页</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">   
+	    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+	    <script src="js/jquery-2.2.2.js"></script>
+	    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+	    <script src="js/jquery.1.11.3.min.js"></script>
+		<script src="js/iscroll.js"></script>
+		<script src="js/navbarscroll.js"></script>
+
+		<style>
+			*{
+				padding: 0;
+				margin: 0 auto;
+			}
+			ul li{
+				list-style: none;
+			}
+			.wrapper{
+				height: 50px;
+				position: relative;
+			}
+			.wrapper .scroller{
+				position: absolute;
+			}
+			.wrapper li{
+				height: 10%;
+				float: left;
+				line-height: 50px;
+				padding: 0 20px;
+				font-size:14px;
+			}
+			.cur{
+				border-bottom:3px solid red;
+			}
+			
+			/**{
+				width:100%;
+				margin: 0 auto;
+			}*/
+			
+			#header a{
+				background:none;
+				border: none;
+			}
+			#header img{
+				width:8%;
+				height:8%;
+				margin: 7px 5px;
+			}
+			#header p{
+				text-align: right;
+				position: absolute;
+				top:28%;
+				left:88%;
+				font-size: 13px;
+			}
+			#searchbox{
+				width: 65%;
+				height:20%;
+				position: absolute;
+				top:-10%;
+				left:18%;
+			}
+			
+			#goodsList{
+				/*border: 1px solid black;*/
+				width:100%;
+				margin-left: 5px;
+				
+			}
+			#goodsList img{
+				
+				border-radius:5px;
+				box-shadow: 2px 2px 8px #A6A6A6;
+			}
+			#goodbox ul
+			{
+			    list-style-type: none;
+			    /*padding: 0 0 0 5%;
+			    margin: 2%;*/
+			}
+			.box{
+				float:left;
+				width:50%;
+				height:50%;
+				margin-top:20px;
+				
+			}
+
+			.box li img{
+				width:150px;
+				height:150px;
+			}
+			#content{
+				width: 100%;
+				font-size: 14px;
+			}
+			#content h4{
+				text-align: center;
+				font-family:"新宋体";
+				position: relative;
+				left:-3%;
+			}
+			/*#goodbox{
+				width:100%;
+				height:1000px;
+				margin:0 10px 0 10px;
+				background-color: white;
+			}*/
+			.ui-icon-sousuo{
+				background-image: url(images/1sousuo.png);
+				background-size: 30px 30px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-list{
+				background-image: url(images/1list.png);
+				background-size: 40px 40px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-gouwu{
+				background-image: url(images/111.png);
+				background-size: 40px 40px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-zhuye{
+				background-image: url(images/1zhuye.png);
+				background-size: 25px 25px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-user{
+				background-image: url(images/user0.png);
+				background-size: 25px 23px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+		</style>
+	</head>
+	<body>
+		
+		<div data-role="header" id="header">
+			<img src="images/222.png"/ >
+			<div id="searchbox"><input type="search" name="search" id="search" value= "" /></div>
+			<p id="sousuo">搜索</p>
+		</div>
+		<div class="wrapper" id="wrap">
+			<div class="scroller">
+				<ul id="fen">
+					<li class="cur">精选</li>
+					<li classID="1">衬衫</li>
+					<li classID="2">礼服</li>
+					<li classID="3">棉服</li>
+					<li classID="4">短外套</li>
+					<li classID="5">卫衣</li>
+					
+				</ul>	
+			</div>
+		</div>
+		
+		<div data-role="content" id="content">
+			<h4>精|选|商|品</h4>
+			<div id="goodbox">
+				<ul id="goodsList">
+				
+				</ul>
+			</div>
+		</div>
+		<div id="footer" data-role = "footer" data-position="fixed">
+				<div data-role = "navbar">
+		      		<ul>
+				        <li><a id="linkindex" class="ui-btn ui-btn-icon-top ui-icon-zhuye ui-nodisc-icon"></a></li>
+				        <li><a id="linkgoodlist" class="ui-btn ui-btn-icon-top ui-icon-list ui-nodisc-icon"></a></li>
+				        <li><a id="linkcar" class="ui-btn ui-btn-icon-top ui-icon-gouwu ui-nodisc-icon"></a></li>
+				        <li><a id="linkzhongxin" class="ui-btn ui-btn-icon-top ui-icon-user ui-nodisc-icon"></a></li>
+				        
+			      	</ul>
+		    	</div>
+			
+		</div>
+		<script>
+			$(function(){
+				$('.wrapper').navbarscroll();
+			})
+			
+			$('#linkindex').click(function(){
+				window.location.href="index.html";
+			})
+			
+			$('#linkcar').click(function(){
+				window.location.href="car.html";
+			})
+			
+			$('#linkzhongxin').click(function(){
+				window.location.href="zhongxin.html";
+			})
+		</script>
+	</body>
+	<script>
+		//获取商品列表
+	$('document').ready(function(){
+		
+		$.ajax({
+			type:'get',
+			url: 'http://datainfo.duapp.com/shopdata/getGoods.php',
+			dataType:'jsonp',
+			//data：{goodsID:goodsID}
+			success:function(data){
+				
+				for(var i=0;i<data.length;i++){
+				  $('#goodsList').html($('#goodsList').html()+'<div class="box"><li goodsId=' +data[i].goodsID+'><img src="'+data[i].goodsListImg+'" alt=""><p>'+data[i].goodsName.slice(0,7)+'...'+'</p></li></div>');
+				  $('#goodsList>.box>li').on('click',function(){
+			       window.location.href='good.html#'+this.getAttribute('goodsID');//链接到商品详情页
+			      })
+				}
+			}
+		});
+
+		//分类
+		$('#fen > li').click(function(){
+			//console.log('1');
+		 	var classId=this.getAttribute('classID');
+		 	//console.log(classId);
+		 	$.ajax({
+			type:"get",
+			url:'http://datainfo.duapp.com/shopdata/getGoods.php',
+			dataType:'jsonp',
+			data:{classID:classId},
+			
+			success:function(data){
+				console.log(data);
+				$('#goodsList').html('');
+				var str='';
+				for(var i=0;i<10;i++){
+					//console.log(data[i].goodsID);
+					str+='<div class="box"><li goodsId=' +data[i].goodsID+'><img src="'+data[i].goodsListImg+'" alt=""><p>'+data[i].goodsName.slice(0,7)+'...'+'</p></li></div>';
+				}
+				$('#goodsList').html(str);
+				$('#goodsList>.box>li').on('click',function(){
+			       window.location.href='good.html#'+this.getAttribute('goodsID');//链接到商品详情页
+			    })
+			}
+		  });
+		});
+		
+
+		//搜索功能
+	    $('#sousuo').click(function(){
+       	var search=encodeURI($('#search').val());
+		 	//console.log(search);
+		 	$.ajax({
+			type:"get",
+			url:'http://datainfo.duapp.com/shopdata/selectGoodes.php',
+			dataType:'jsonp',
+			data:{selectText:search},
+			success:function(data){
+				console.log(data);
+				$('#goodlist').html('');
+				var str='';
+				for(var i=0;i<data.length;i++){
+					//console.log(data[i].goodsID);
+					str+='<div class="box"><li goodsId=' +data[i].goodsID+'><img src="'+data[i].goodsListImg+'" alt=""><p>'+data[i].goodsName.slice(0,7)+'...'+'</p></li></div>';
+				}
+				$('#goodsList').html(str);
+				$('#goodsList>.box>li').on('click',function(){
+			       window.location.href='good.html#'+this.getAttribute('goodsID');//链接到商品详情页
+			    })
+			}
+			
+		  });
+       });
+		
+		
+		
+	})	
+		
+		
+	</script>
+</html>

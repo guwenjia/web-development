@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">   
+	    <script src="js/jquery-2.2.2.js"></script>
+
+	    <script src="js/rem.js"></script>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+				font-size: 0.4rem;
+			}
+			ul li{
+				list-style: none;
+			}
+			#header{
+				height:1.3rem;
+				background-color:white;
+			}
+			#header a{
+				background:none;
+				width:1rem;
+				height:1rem;
+			
+			}
+			#header span{
+				color: #71b642;
+				font-size: 0.5rem;
+				line-height: 1.2rem;
+				position: absolute;
+				left:4.5rem;
+				font-weight:bolder;
+			}
+			#lefticon{
+				width:1rem;
+				height: 1rem;
+			}
+			#content{
+				padding:0.1rem 0;
+				height:15rem;
+				background-color:#F0F0F0;
+			}
+			#goodlist li{
+				height:3.5rem;
+				background-color: white;
+				margin: 0.5rem 0;
+			}
+			.goodpic{
+				float: left;
+				width:2.8rem;
+				height:2.8rem;
+				margin: 0.3rem 0.4rem;
+				
+			}
+			.custom{
+				float: left;
+				position: relative;
+				top:2rem;
+			}
+			.goodtitle{
+				float: left;
+				width: 4.5rem;
+				height: 1rem;
+				margin-top: 0.25rem;
+				margin-left: 0.2rem;
+				
+			}
+			.goodprice{
+				float: left;
+				font-size: 0.4rem;
+				color:#f73c45;
+				width: 4.5rem;
+				height: 0.5rem;
+				
+				margin-left: 0.2rem;
+				margin-top: 0.6rem;
+				
+			}
+			
+			.custom{
+				position:relative;
+				
+				left:0.2rem;
+			}
+			.count{
+				float:left;
+			}
+			.deletepic{
+				width:1rem;
+				height:1rem;
+				float:right;
+				margin-top: -0.2rem;
+				margin-right:0.2rem;
+			}
+			
+			
+			
+			
+			#all{
+				display: block;
+				float: left;
+				font-size: 0.4rem;
+				margin:0.5rem 0.2rem;
+				width:2rem;
+			}
+			#all span{
+				position: relative;
+				top:-0.2rem;
+			}
+			#zongji{
+				
+				width: 2rem;
+				height: 0.4rem;
+				float:left;
+				margin-top:0.5rem;
+				margin-left:3rem;
+			}
+			#sum{
+				width: 2.5rem;
+				height: 1.1rem;
+				color: white;
+				background-color:#f73c45;
+				font-size: 0.4rem;
+				float: right;
+				margin-top: 0.2rem;
+				margin-right:0.2rem;
+				border: none;
+			}
+			#footer{
+				display: block;
+				position: fixed;
+				width:100%;
+				height:1.4rem;
+				box-shadow: 0.1rem 0.1rem 0.1rem #888888;
+				border-color:#f73c45;
+				background-color: white;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div id="header" data-role="header">
+			<a href="good.html"><img id="lefticon" src="images/left (1).png"/></a>
+			<span>购物车</span>
+		</div>
+		<div id="content">
+			<ul id="goodlist">
+				<li>
+					<input type="checkbox" class="custom" checked=""/>
+					<div class="pic"><img class="goodpic" src="images/box01.jpg"/></div>
+					<span class="goodtitle">商品名称</span>
+					<span class="goodprice">价格</span>
+				</li>
+
+			</ul>
+		</div>
+		<!--底部-->
+		<div id="footer" >
+			<div id="all"><input type="checkbox" id="allchoice"><span>全选</span></div>
+			<p id="zongji">合计：¥<span class="money">0</span></p>
+			<input type="button" value="结算" id="sum">
+		</div>
+		
+
+	</body>
+	<script>
+		var username=localStorage.getItem('username');
+
+		if(username !== null){
+			alert('您登陆的账号为：'+username);
+		}
+		else {
+			alert('请先登录');
+			window.location.href="signin.html";
+		}
+
+		$.ajax({
+				type:"get",
+				url:'http://datainfo.duapp.com/shopdata/getCar.php',
+				dataType:'jsonp',
+				data:{userID:username},
+				success:function(data){
+					console.log(data);
+					var list=document.getElementsByClassName('goodlist');
+					var str='';
+					for(var i=0;i<data.length;i++){
+						str+='<li class="good"><input type="checkbox" class="custom"><img src="'+data[i].goodsListImg+'" class="goodpic"><span class="goodtitle">'+data[i].goodsName+'</span>'
+						+'<span class="goodprice">¥'+data[i].price+'</span>'
+ 						//改变数量按钮
+ 						+'<div class="count">'
+ 						+'<button id="minus" goodsId="'+data[i].goodsID+'">-</button>'
+ 	                    +'<span class="number">'+data[i].number+'</span>'
+ 	                    +'<button id="add" goodsId="'+data[i].goodsID+'">+</button></div>'
+ 	                    //删除商品
+ 						+'<img src="images/trash.png" class="deletepic" goodsId="'+data[i].goodsID+'">'
+ 					    +'</li>';
+					};
+					$('#goodlist').html(str);
+
+					$("input[class='custom']").change(function(){  
+      		          //alert('111');
+						var allchoice=$('#allchoice')[0];
+						var flag=0;
+			                var choice = $('.custom');
+							for(var i=0;i<choice.length;i++){
+								if(!choice[i].checked){
+									//console.log(i+':'+choice[i].checked);
+									allchoice.checked=false;
+									//console.log('all:'+allchoice.checked);
+								flag=1;
+								}
+							}
+							if(flag==0){
+								allchoice.checked=true;
+							}
+					});  
+					
+//		});
+
+					//全选
+					$('#allchoice').click(function(){  
+						var choice = $('.custom');
+						if($(this).is(":checked")){  
+							for(var i=0;i<choice.length;i++){
+								choice[i].checked = true;
+							}
+							}else{    
+								for(var i=0;i<choice.length;i++){
+									choice[i].checked = false;
+							}
+						}  
+					});
+						//减
+						$('.count>#minus').each(function() { 
+							 $(this).click(function(){
+									var val=parseInt($(this).next().html());
+									console.log(val);
+									if(val>1)
+									val--;
+									else{
+										val=1;
+									}
+									$(this).next().html(val);
+									var goodsId=$(this).attr('goodsId');
+									 $.ajax({
+										type:"get",
+										url:'http://datainfo.duapp.com/shopdata/updatecar.php',
+										data:{userID:username,goodsID:goodsId,number:val},
+										success:function(data){
+											console.log(data);
+										},
+									});	
+							})
+						}); 
+				// 加 
+						$('.count > #add').each(function(){
+							$(this).click(function(){
+							var val=parseInt($(this).prev().html());
+							console.log(val);
+							val++;
+							$(this).prev().html(val);
+							var goodsId=$(this).attr('goodsId');
+								 $.ajax({
+									type:"get",
+									url:'http://datainfo.duapp.com/shopdata/updatecar.php',
+									data:{userID:username,goodsID:goodsId,number:val},
+									success:function(data){
+										console.log(data);
+									},
+								});	
+							})
+						}); 
+				//删除商品
+						$('.deletepic').click(function(){
+							var goodsId=$(this).attr('goodsId');
+								console.log(goodsId+username);
+								$(this).parents('.good').remove();
+								
+								$.ajax({
+									type:"get",
+									url:'http://datainfo.duapp.com/shopdata/updatecar.php',
+									data:{userID:username,goodsID:goodsId,number:0},
+									success:function(data){
+										console.log(data);
+									},
+									error:function(){
+									}
+								});
+						});
+				
+				//计算
+						$("input[class='custom'],#allchoice").change(function(){
+						   	 var money=parseInt($('.money').html());
+						     console.log(money);
+						     var result=0;
+						     var choice = $('.custom');
+						     for(var i=0;i<choice.length;i++){
+									if(choice[i].checked){
+										var number=parseInt($(choice[i]).nextAll('.count').children('.number').html());
+										console.log(number);
+										var price=parseInt($(choice[i]).nextAll('.goodprice').html().slice(1))*number;
+										result+=price;
+									}
+							}
+						     $('.money').html(result);
+						})
+			
+			}
+  					
+  		});
+
+
+			
+	</script>
+</html>

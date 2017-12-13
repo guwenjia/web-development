@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>购物车</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">   
+	    <script src="js/jquery-2.2.2.js"></script>
+
+	    <script src="js/rem.js"></script>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+				font-size: 0.4rem;
+			}
+			ul li{
+				list-style: none;
+			}
+			#header{
+				height:1.3rem;
+				background-color:white;
+			}
+			#header a{
+				background:none;
+				width:1rem;
+				height:1rem;
+			
+			}
+			#header span{
+				color: #71b642;
+				font-size: 0.5rem;
+				line-height: 1.2rem;
+				position: absolute;
+				left:4.5rem;
+				font-weight:bolder;
+			}
+			#lefticon{
+				width:1rem;
+				height: 1rem;
+			}
+			#content{
+				padding:0.1rem 0;
+				height:15rem;
+				background-color:#F0F0F0;
+			}
+			#goodlist li{
+				height:3.5rem;
+				background-color: white;
+				margin: 0.5rem 0;
+			}
+			.goodpic{
+				width:2.8rem;
+				height:2.8rem;
+				
+			}
+			.custom{
+				position: relative;
+				top:-1rem;
+			}
+			.goodtitle{
+				position: relative;
+				top:-2.3rem;
+				left:3.9rem;
+				
+			}
+			.goodprice{
+				position: relative;
+				top:-0.3rem;
+				left:0.6rem;
+				
+			}
+			.pic{
+				width:2.8rem;
+				height:2.8rem;
+				margin: -0.3rem 0.8rem;
+			}
+			.custom{
+				position:relative;
+				top:1.6rem;
+				left:0.2rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header" data-role="header">
+			<a href="good.html"><img id="lefticon" src="images/left (1).png"/></a>
+			<span>购物车</span>
+		</div>
+		<div id="content">
+			<ul id="goodlist">
+				<li>
+					<input type="checkbox" name="hxy" id="effect1" class="custom" checked=""/>
+					<div class="pic"><img class="goodpic" src="images/box01.jpg"/></div>
+					<span class="goodtitle">商品名称</span>
+					<span class="goodprice">价格</span>
+				</li>
+
+			</ul>
+		</div>
+		<div id="footer"></div>
+	</body>
+	<script>
+		var username=localStorage.getItem('username');
+		console.log(username);
+		$.ajax({
+				type:"get",
+				url:'http://datainfo.duapp.com/shopdata/getCar.php',
+				dataType:'jsonp',
+				data:{userID:username},
+				success:function(data){
+					//console.log(data);
+					var list=document.getElementsByClassName('goodlist');
+					var str='';
+					for(var i=0;i<data.length;i++){
+//						str='<input type="checkbox" name="hxy" id="effect1" class="custom" checked=""/><img class="goodpic" src="'+data[i].goodsListImg+'"/>'+'<span class="goodtitle">'+data[i].goodsName+'</span>'+'<span class="goodprice">'+价格+'</span>';
+						$('.pic').html('<img class="goodpic" src="'+data[i].goodsListImg+'"/>');
+						$('.goodtitle').html(data[i].goodsName);
+						$('.goodprice').html(data[i].price);
+					};
+					
+				}	
+		})
+		
+		$.ajax({
+					type:"get",
+					url:'http://datainfo.duapp.com/shopdata/updatecar.php',
+					data:{userID:username,goodsID:goodsId,number:val},
+					success:function(data){
+						console.log(data);
+					}
+
+					
+		});
+
+
+			
+	</script>
+</html>

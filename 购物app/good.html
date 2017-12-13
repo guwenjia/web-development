@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>商品详情</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">   
+	    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+	    <script src="js/jquery-2.2.2.js"></script>
+	    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+	    <style>
+
+			#header a{
+				background:none;
+				border: none;
+			}
+			#header1{
+				width:12%;
+				height:12%;
+				margin: 7px 5px;
+				display: inline;
+			}
+			#header strong{
+				position:relative;
+				left:22%;
+				top:-17px;
+				
+				font-size: 18px;
+				
+			}
+			#header2{
+				width:10%;
+				height:10%;
+				margin-right:2%;
+				margin-top: 5%;
+				float:right;
+			}
+			/*.ui-icon-sousuo{
+				background-image: url(images/1sousuo.png);
+				background-size: 30px 30px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-list{
+				background-image: url(images/1list.png);
+				background-size: 40px 40px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-gouwu{
+				background-image: url(images/111.png);
+				background-size: 40px 40px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-zhuye{
+				background-image: url(images/1zhuye.png);
+				background-size: 25px 25px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}*/
+			*{
+				width:100%;
+			}
+			#two{
+				height:25px;
+				font-size: 16px;
+				background-color: #71b642;
+				color:white;
+				
+			}
+			#one{
+				height:25px;
+				font-size: 16px;
+				background-color: white;
+				color:#71b642;
+				
+			}
+			#content{
+				
+				width:100%;
+			}
+			#pic img{
+				height:100%;
+				width:100%;
+				
+				
+			}
+			#name{
+				font-family: "微软雅黑";
+				font-size: 18px;
+			}
+			#content h4{
+				color: #71b642;
+				font-size: 24px;
+			}
+
+			#xiangqing{
+				color: #71b642;
+				font-weight:bold;
+			}
+	    </style>
+	</head>
+	<body>
+		<div data-role="header" id="header">
+			<img id="header1" src="images/left (1).png"/ >
+			<strong>商品详情</strong>
+			<img id="header2" src="images/gouwu.png"/>
+		</div>
+		
+		<div id="content">
+			<!--商品图片-->
+			<div id="pic"></div>
+			<!--商品名称-->
+			<p id="name"></p>
+			<!--商品价格-->
+			<h4></h4>
+			<!--商品详情-->
+			<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color=#71b642 SIZE=1.5>
+			<p id="xiangqing">商品详情</p>
+			<p id="detail"></p>
+			<HR style="FILTER: alpha(opacity=100,finishopacity=0,style=3)" width="80%" color=#71b642 SIZE=1.5>
+		</div>
+
+		<div id="footer" data-role = "footer" data-position="fixed">
+				<div data-role = "navbar">
+		      		<ul>
+				        <li><a id="one" href="#">加入购物车</a></li>
+
+				        <li ><a id="two" href="#">立即购买</a></li>
+			      	</ul>
+		    	</div>
+			
+		</div>
+		
+	</body>
+	<script>
+		$('#header1').click(function(){
+			window.location.href='newgoodlist.html';
+		})
+		$('#header2').click(function(){
+			window.location.href='car.html';
+		})
+	$('document').ready(function(){	
+		//获取商品
+		var goodsId= window.location.hash.slice(1);
+		$.ajax({
+			type:'get',
+			url:'http://datainfo.duapp.com/shopdata/getGoods.php',
+			dataType:'jsonp',
+			data:{goodsID:goodsId},
+			success:function(data){
+				
+				$('#pic').html('<img src = "'+data[0].goodsListImg + '"alt="">');
+				$('#name').html('&nbsp;&nbsp;'+data[0].goodsName);
+				$('h4').html('&nbsp;&nbsp;￥'+data[0].price);
+				$('#detail').html(data[0].detail);
+				
+			},
+			error:function(){
+				
+			}
+		});
+		
+		//购物车
+		$('#one').click(function(){
+			var username=localStorage.getItem('username');
+			console.log(username);
+			$.ajax({
+				type:"get",
+				url:'http://datainfo.duapp.com/shopdata/updatecar.php',
+				//dataType:'jsonp',
+				data:{userID:username,goodsID:goodsId},
+				success:function(data){
+					console.log(data);
+					if(data==1){
+						alert('已加入购物车');
+					}
+					else{
+						alert('添加失败,请先登录');
+					}
+				},
+				error:function(){
+				}
+			});
+		});
+		
+		
+//		$('#one').click(function(){
+//			//localStorage.setItem('login','true');
+//			window.location.href='gouwuche.html';
+//	
+//		})	
+	})
+		
+
+	</script>
+</html>

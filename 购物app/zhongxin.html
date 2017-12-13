@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>个人中心</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">   
+	    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+	    <script src="js/jquery-2.2.2.js"></script>
+	    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+	    <style>
+	    	*{
+	    		margin:0 auto;
+	    		
+	    	}
+	    	#boxone{
+	    		height:15rem;
+	    		width: 100%;
+	    		background-color:NavajoWhite;
+	    	}
+	    	#touxiang{
+	    		width:5rem;
+	    		height:5rem;
+	    		margin:3rem 40%;
+	    		border-radius: 100%;
+	    	}
+	    	#boxone p{
+	    		text-align: center;
+	    		position: relative;
+				top:-2.7rem;
+	    	}
+	    	#box{
+	    		width:100%;
+	    	}
+	    	#shezhi{
+	    		width:1.3rem;
+	    		float: right;
+				margin: 0.3rem;
+	    	}
+			#content{
+				width:100%;
+				height:20rem;
+				
+			}
+			ul li{
+				list-style: none;
+			}
+			#dingdan li a{
+				border: none;
+				background-color: white;
+			}
+			#content ul li a{
+				background-color: white;
+			}
+			.ui-icon-sousuo{
+				background-image: url(images/1sousuo.png);
+				background-size: 30px 30px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-list{
+				background-image: url(images/1list.png);
+				background-size: 40px 40px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-gouwu{
+				background-image: url(images/111.png);
+				background-size: 40px 40px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-zhuye{
+				background-image: url(images/1zhuye.png);
+				background-size: 25px 25px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-user{
+				background-image: url(images/user0.png);
+				background-size: 25px 23px;
+				background-repeat: no-repeat;
+				background-position: center;
+			}
+			.ui-icon-fukuan{
+				background-image: url(images/fukuan.png);
+				background-size: 20px 20px;
+				background-repeat: no-repeat;
+				background-position-y: 10px;
+				background-position-x:center;
+			}
+			.ui-icon-fahuo{
+				background-image: url(images/fahuo.png);
+				background-size: 30px 30px;
+				background-repeat: no-repeat;
+				background-position-y: 3px;
+				background-position-x:center;
+			}
+			.ui-icon-shouhuo{
+				background-image: url(images/shouhuo.png);
+				background-size: 20px 20px;
+				background-repeat: no-repeat;
+				background-position-y: 10px;
+				background-position-x:center;
+			}
+	    </style>
+	</head>
+	<body>
+		<!--<div data-role="header" id="header">
+			<a href="zhongxin.html" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
+			<h1>个人中心</h1>
+		</div>-->
+		<div id="box">
+			<div id="boxone">
+				<a href="shezhi.html" id="linkshezhe"><img id="shezhi" src="images/shezhi.png"/></a>
+				<img id="touxiang" src="images/tou.jpg"/>
+				<p>关注 188&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp; 粉丝 521</p>
+			</div>
+			
+		</div>
+		
+		<div id="content">
+			<ul data-role="listview" data-inset="true">
+	        	<li>
+					<a href="#" >我的订单</a> 
+	            </li>
+	            <li>
+					<div data-role="navbar" id="navbar" >
+					    <ul id="dingdan" data-inset="true">
+							<li><a href="#" class="ui-btn ui-btn-icon-top ui-icon-fukuan ui-nodisc-icon">待付款</a></li>
+					 		<li><a href="#" class="ui-btn ui-btn-icon-top ui-icon-fahuo ui-nodisc-icon">待发货</a></li>
+					 		<li><a href="#" class="ui-btn ui-btn-icon-top ui-icon-shouhuo ui-nodisc-icon">待收货</a></li>
+					 		
+					   </ul>
+	 				</div>
+				</li>
+	            <li>
+					<a href="#">我的收藏</a> 
+	            </li>
+	            <li>
+					<a href="#">我的评价</a> 
+	            </li>
+	            <li>
+					<a href="#">收货地址</a> 
+	            </li>
+	        </ul>
+		</div>
+		
+		<div id="footer" data-role = "footer" data-position="fixed">
+				<div data-role = "navbar">
+		      		<ul>
+				        <li><a id="linkindex" class="ui-btn ui-btn-icon-top ui-icon-zhuye ui-nodisc-icon"></a></li>
+				        <li><a id="linkgoodlist" class="ui-btn ui-btn-icon-top ui-icon-list ui-nodisc-icon"></a></li>
+				        <li><a id="linkcar" class="ui-btn ui-btn-icon-top ui-icon-gouwu ui-nodisc-icon"></a></li>
+				        <li><a id="#" class="ui-btn ui-btn-icon-top ui-icon-user ui-nodisc-icon"></a></li>
+				        
+			      	</ul>
+		    	</div>
+			
+		</div>
+	</body>
+	<script>
+			$('#linkindex').click(function(){
+				window.location.href="index.html";
+			})
+			
+			$('#linkcar').click(function(){
+				window.location.href="car.html";
+			})
+			
+			$('#linkgoodlist').click(function(){
+				window.location.href="newgoodlist.html";
+			})
+		
+			$('#linkshezhe').click(function(){
+				window.location.href="shezhi.html";
+			})
+	
+		
+	</script>
+</html>

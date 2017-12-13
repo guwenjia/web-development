@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>设置</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	    <meta name="viewport" content="width=device-width, initial-scale=1">   
+	    <link rel="stylesheet" href="css/jquery.mobile-1.4.5.min.css" />
+	    <script src="js/jquery-2.2.2.js"></script>
+	    <script src="js/jquery.mobile-1.4.5.min.js"></script>
+	    <style>
+	    	a {
+	    		background-color: white;
+	    	}
+	    	#one{
+	    		height:25px;
+				font-size: 16px;
+				background-color:#71b642;
+				color:white;
+	    	}
+	    	#pic{
+	    		border-radius: 100%;
+				width:4.5rem;
+				height:4.5rem;
+				padding:0.3rem 0 0 0.5rem;
+	    	}
+	    	ul li a{
+	    		background-color:white;
+	    	}
+	    </style>
+	</head>
+	<body>
+		<div data-role="header" id="header">
+			<a id="linkzhongxin" data-role="button" data-icon="arrow-l" data-iconpos="notext"></a>
+			<h1>设置</h1>
+		</div>
+		<div data-role="content">
+	        <ul data-role="listview" data-inset="true">
+	            
+	            <li>
+	       	       <a href="#">
+	       	        <img id="pic" src="images/tou.jpg"/>
+	        	    <h2 id="user">Special</h2>
+	                <p id="word">The best is for you.</p>
+	        	   </a>
+	      		   <a href="#download" data-rel="dialog" data- transition="pop">个人资料</a>
+	            </li>
+	            <li>
+					<a href="#">我的收货地址</a> 
+	            </li>
+	        </ul>
+	        <ul data-role="listview" data-inset="true">
+	        	<li>
+					<a href="#">账户与安全</a> 
+	            </li>
+	        </ul>
+	        
+	        <ul data-role="listview" data-inset="true">
+	        	<li>
+					<a href="#">地区设置</a> 
+	            </li>
+	            <li>
+					<a href="#">音效与通知</a> 
+	            </li>
+	            <li>
+					<a href="#">隐私</a> 
+	            </li>
+	            <li>
+					<a href="#">通用</a> 
+	            </li>
+	        </ul>
+	  	</div>
+		<div id="footer" data-role = "footer" data-position="fixed">
+				<div data-role = "navbar">
+		      		<ul>
+				        <li><a id="one" href="#">退出当前用户</a></li>
+			      	</ul>
+		    	</div>
+			
+		</div>
+		
+	</body>
+	<script>
+		$('#linkzhongxin').click(function(){
+			window.location.href='zhongxin.html';
+		});
+		
+		var username=localStorage.getItem('username');
+		$('#user').html(username);
+		
+		$('#one').click(function(){
+			
+			localStorage.removeItem('username');//删除
+			localStorage.removeItem('password');
+			alert('您已退出登录');
+			$('#user').html('请登录');
+			$('#word').html(' ');
+		})
+		
+	</script>
+</html>
