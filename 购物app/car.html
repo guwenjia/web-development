@@ -294,19 +294,18 @@
 				
 				//计算
 						$("input[class='custom'],#allchoice").change(function(){
-						   	 var money=parseInt($('.money').html());
-						     console.log(money);
-						     var result=0;
+						   	 var money=parseInt($('.money').text());
 						     var choice = $('.custom');
+						     var mostmoney=0;
 						     for(var i=0;i<choice.length;i++){
 									if(choice[i].checked){
-										var number=parseInt($(choice[i]).nextAll('.count').children('.number').html());
+										var number=parseInt($(choice[i]).parent().children().children('.number').text());
 										console.log(number);
-										var price=parseInt($(choice[i]).nextAll('.goodprice').html().slice(1))*number;
-										result+=price;
+										mostmoney+=parseInt($(choice[i]).parent().children('.goodprice').text().slice(1))*number;
+										console.log(mostmoney);
 									}
-							}
-						     $('.money').html(result);
+							 }
+						     $('.money').html(mostmoney);
 						})
 			
 			}
